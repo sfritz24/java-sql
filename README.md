@@ -81,7 +81,7 @@ FROM orders
 ORDER BY  order_date DESC
 ```
 
-* [ ] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
+* [X] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
 
   <details><summary>hint</summary>
 
@@ -90,10 +90,12 @@ ORDER BY  order_date DESC
   </details>
 
 ```SQL
-
+SELECT *
+FROM suppliers
+WHERE length(company_name) > 20
 ```
 
-* [ ] ***find all customers that include the word 'MARKET' in the contact title. Should return 19 records***
+* [X] ***find all customers that include the word 'MARKET' in the contact title. Should return 19 records***
 
   <details><summary>hint</summary>
 
@@ -103,10 +105,12 @@ ORDER BY  order_date DESC
   </details>
 
 ```SQL
-
+SELECT *
+FROM customers
+WHERE UPPER(contact_title) LIKE '%MARKET%'
 ```
 
-* [ ] ***add a customer record for***
+* [X] ***add a customer record for***
 * customer id is 'SHIRE'
 * company name is 'The Shire'
 * contact name is 'Bilbo Baggins'
@@ -120,10 +124,11 @@ ORDER BY  order_date DESC
   </details>
 
 ```SQL
-
+INSERT INTO customers(customer_id, company_name, contact_name, address, city, postal_code, country)
+	VALUES ('SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth')
 ```
 
-* [ ] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
+* [X] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
 
   <details><summary>hint</summary>
 
@@ -131,7 +136,9 @@ ORDER BY  order_date DESC
   </details>
 
 ```SQL
-
+UPDATE customers
+SET postal_code = '11122'
+WHERE customer_id = 'SHIRE'
 ```
 
 * [ ] ***list orders grouped and ordered by customer company name showing the number of orders per customer company name. _Rattlesnake Canyon Grocery_ should have 18 orders***
